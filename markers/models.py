@@ -68,6 +68,9 @@ class MarkerProposal(Marker):
     class Meta:
         verbose_name = 'návrh bodu'
         verbose_name_plural = 'návrhy bodů'
+        permissions = [
+            ("accept_markerproposal", "Může přijmout návrh bodu")
+        ]
 
 
 class AcceptedMarker(Marker):
