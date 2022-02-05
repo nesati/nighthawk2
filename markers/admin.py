@@ -4,7 +4,8 @@ from .models import AcceptedMarker, MarkerProposal, Image
 
 class ImageInline(admin.TabularInline):
     model = Image
-    extra = 2
+    extra = 0
+    min_num = 2
 
 
 class MarkerAdmin(admin.ModelAdmin):
