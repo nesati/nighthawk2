@@ -119,6 +119,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# User-uploaded files
+# https://docs.djangoproject.com/en/4.0/topics/files/
+
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
