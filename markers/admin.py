@@ -1,5 +1,10 @@
 from django.contrib import admin
+
+from nighthawk2 import settings
 from .models import AcceptedMarker, MarkerProposal, Image
+
+admin.site.site_header = settings.SITE_NAME
+admin.site.site_title = settings.SITE_NAME
 
 
 class ImageInline(admin.TabularInline):
