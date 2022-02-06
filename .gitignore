@@ -135,6 +135,7 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+media/
 
 # Flask stuff:
 instance/
@@ -211,6 +212,3 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-
-# Django media uploads
-media/
