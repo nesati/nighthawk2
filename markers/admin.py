@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import PermissionDenied
 from django.utils.html import format_html
 
 from nighthawk2 import settings
@@ -46,6 +47,13 @@ class MarkerProposalAdmin(MarkerAdmin):
         return format_html('<a class="button" href="#" style="text-decoration: none">Přijmout</a>')
 
     accept_button.short_description = 'možnosti'
+
+    def accept_proposal(self, request, proposal_id):
+        if not request.user.has_perm('markers.accept_markerproposal'):
+            raise PermissionDenied
+
+        proposal = MarkerProposal.objects.get(pk=proposal_id)
+
 
 
 admin.site.register(AcceptedMarker, MarkerAdmin)
