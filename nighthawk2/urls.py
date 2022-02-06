@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
+
+from nighthawk2 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', LoginView.as_view(
+        template_name='admin/login.html',
+        extra_context={
+            'title': 'Přihlášení',
+            'site_title': settings.SITE_NAME,
+            'site_header': settings.SITE_NAME
+        }
+    ))
 ]
