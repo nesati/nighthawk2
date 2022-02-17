@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.utils.html import format_html
 
 from nighthawk2 import settings
@@ -53,6 +55,24 @@ class MarkerProposalAdmin(MarkerAdmin):
             raise PermissionDenied
 
         proposal = MarkerProposal.objects.get(pk=proposal_id)
+
+        if request.method == 'POST':
+            accepted_marker = AcceptedMarker.objects.create(
+                title=proposal.title,
+                lat=proposal.lat,
+                lng=proposal.lng,
+                description=proposal.description
+            )
+
+            images = Image.objects.filter(marker=proposal)
+            for image in images:
+                image.marker = accepted_marker
+            proposal.delete()
+
+            self.message_user(request, "Bod byl přijat.")
+            return HttpResponseRedirect(reverse('admin:markers_acceptedmarker_change', args=[accepted_marker.pk]))
+
+
 
 
 
