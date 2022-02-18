@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.template.response import TemplateResponse
+from django.urls import reverse, path
 from django.utils.html import format_html
 
 from nighthawk2 import settings
@@ -50,13 +51,26 @@ class MarkerProposalAdmin(MarkerAdmin):
 
     accept_button.short_description = 'možnosti'
 
+    def get_urls(self):
+        default_urls = super().get_urls()
+        proposal_urls = [
+            path('<int:proposal_id>/accept/', self.admin_site.admin_view(self.accept_proposal), name='accept'),
+        ]
+        return default_urls + proposal_urls
+
     def accept_proposal(self, request, proposal_id):
         if not request.user.has_perm('markers.accept_markerproposal'):
             raise PermissionDenied
 
         proposal = MarkerProposal.objects.get(pk=proposal_id)
 
-        if request.method == 'POST':
+        if request.method == 'GET':
+            context = {}
+            context['offer_name'] = proposal
+
+            return TemplateResponse(request, 'admin/markers/markerproposal/accept.html', context)
+
+        elif request.method == 'POST':
             accepted_marker = AcceptedMarker.objects.create(
                 title=proposal.title,
                 lat=proposal.lat,
@@ -72,9 +86,9 @@ class MarkerProposalAdmin(MarkerAdmin):
             self.message_user(request, "Bod byl přijat.")
             return HttpResponseRedirect(reverse('admin:markers_acceptedmarker_change', args=[accepted_marker.pk]))
 
-
-
-
+        else:
+            # Method not allowed
+            return HttpResponse(status=405)
 
 admin.site.register(AcceptedMarker, MarkerAdmin)
 admin.site.register(MarkerProposal, MarkerProposalAdmin)

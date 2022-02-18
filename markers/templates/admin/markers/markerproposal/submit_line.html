@@ -7,7 +7,7 @@
             <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}" class="deletelink">{% translate "Delete" %}</a></p>
         {% endif %}
         {% if perms.markers.accept_markerproposal and original %}
-            <p class="acceptlink-box"><a href="#" class="acceptlink">{% translate 'Přijmout' %}</a></p>
+            <p class="acceptlink-box"><a href="{% url 'admin:accept' original.pk %}" class="acceptlink">{% translate 'Přijmout' %}</a></p>
         {% endif %}
         {% if show_save_as_new %}<input type="submit" value="{% translate 'Save as new' %}" name="_saveasnew">{% endif %}
         {% if show_save_and_add_another %}<input type="submit" value="{% translate 'Save and add another' %}" name="_addanother">{% endif %}

@@ -3,13 +3,13 @@
 {% load admin_urls %}
 
 {% block breadcrumbs_last %}
-    <a href="{% url 'admin:loans_loanoffer_change' offer_id %}">{{ offer_name }}</a>
+    <a href="{% url 'admin:loans_loanoffer_change' offer_id %}">{{ proposal_name }}</a>
     &rsaquo; Přijmout
 {% endblock %}
 
 {% block content %}
     <h1>Opravdu chcete přijmout tento bod?</h1>
-    <p>Bod {{ marker_proposal }} bude přesunut mezi přijaté a bude se zobrazovat v mapě.</p>
+    <p>Bod {{ proposal_name }} bude přesunut mezi přijaté a bude se zobrazovat v mapě.</p>
     <form method="post">
         {% csrf_token %}
         <div class="submit-row">
