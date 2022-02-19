@@ -47,7 +47,8 @@ class MarkerProposalAdmin(MarkerAdmin):
         return super().changelist_view(request, extra_context)
 
     def accept_button(self, obj):
-        return format_html('<a class="button" href="#" style="text-decoration: none">Přijmout</a>')
+        return format_html('<a class="button" href="{}" style="text-decoration: none">Přijmout</a>',
+                           reverse('admin:accept', args=[obj.pk]))
 
     accept_button.short_description = 'možnosti'
 
