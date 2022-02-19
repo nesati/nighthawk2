@@ -1,9 +1,9 @@
-{% extends "admin/loans/loanoffer/base.html" %}
+{% extends "admin/markers/markerproposal/base.html" %}
 {% load i18n %}
 {% load admin_urls %}
 
 {% block breadcrumbs_last %}
-    <a href="{% url 'admin:loans_loanoffer_change' offer_id %}">{{ proposal_name }}</a>
+    <a href="{% url 'admin:markers_markerproposal_change' proposal_id %}">{{ proposal_name }}</a>
     &rsaquo; Přijmout
 {% endblock %}
 

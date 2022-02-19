@@ -52,11 +52,13 @@ class MarkerProposalAdmin(MarkerAdmin):
     accept_button.short_description = 'možnosti'
 
     def get_urls(self):
-        default_urls = super().get_urls()
-        proposal_urls = [
-            path('<int:proposal_id>/accept/', self.admin_site.admin_view(self.accept_proposal), name='accept'),
+        urls = super().get_urls()
+        my_urls = [
+            path('<int:proposal_id>/accept/',
+                 self.admin_site.admin_view(self.accept_proposal),
+                 name='accept'),
         ]
-        return default_urls + proposal_urls
+        return my_urls + urls
 
     def accept_proposal(self, request, proposal_id):
         if not request.user.has_perm('markers.accept_markerproposal'):
@@ -65,8 +67,11 @@ class MarkerProposalAdmin(MarkerAdmin):
         proposal = MarkerProposal.objects.get(pk=proposal_id)
 
         if request.method == 'GET':
-            context = {}
-            context['offer_name'] = proposal
+            context = {
+                'opts': MarkerProposal._meta,
+                'proposal_name': proposal,
+                'proposal_id': proposal.pk
+            }
 
             return TemplateResponse(request, 'admin/markers/markerproposal/accept.html', context)
 
@@ -78,9 +83,7 @@ class MarkerProposalAdmin(MarkerAdmin):
                 description=proposal.description
             )
 
-            images = Image.objects.filter(marker=proposal)
-            for image in images:
-                image.marker = accepted_marker
+            Image.objects.filter(marker=proposal).update(marker=accepted_marker)
             proposal.delete()
 
             self.message_user(request, "Bod byl přijat.")
@@ -89,6 +92,7 @@ class MarkerProposalAdmin(MarkerAdmin):
         else:
             # Method not allowed
             return HttpResponse(status=405)
+
 
 admin.site.register(AcceptedMarker, MarkerAdmin)
 admin.site.register(MarkerProposal, MarkerProposalAdmin)
