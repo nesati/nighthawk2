@@ -16,12 +16,20 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
+
+from markers import views
 
 from nighthawk2 import settings
 
+router = routers.DefaultRouter()
+router.register('', views.MarkerViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('markers/', include(router.urls)),
     path('accounts/login/', LoginView.as_view(
         template_name='admin/login.html',
         extra_context={
