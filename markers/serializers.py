@@ -6,7 +6,7 @@ from markers.models import AcceptedMarker, Image
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = '__all__'
+        exclude = ['id', 'marker']
 
 
 class MarkerSerializer(serializers.ModelSerializer):
@@ -15,3 +15,4 @@ class MarkerSerializer(serializers.ModelSerializer):
     class Meta:
         model = AcceptedMarker
         fields = '__all__'
+
