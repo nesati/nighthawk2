@@ -50,7 +50,7 @@ class Image(models.Model):
     source_name = models.CharField(verbose_name="název zdroje", max_length=100)
     source_url = models.URLField(verbose_name="adresa zdroje")
     media = models.ImageField(verbose_name="obrázek")
-    marker = models.ForeignKey(Marker, on_delete=models.CASCADE)
+    marker = models.ForeignKey(Marker, on_delete=models.CASCADE, related_name='marker_images')
 
     def __str__(self):
         return f"{self.marker.title} {self.year}"
