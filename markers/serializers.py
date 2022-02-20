@@ -10,7 +10,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class MarkerSerializer(serializers.ModelSerializer):
-    marker_images = ImageSerializer(many=True)
+    marker_images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = AcceptedMarker
