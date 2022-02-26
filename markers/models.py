@@ -13,7 +13,7 @@ class Marker(models.Model):
 
     lat = models.DecimalField(
         verbose_name="zeměpisná šířka",
-        max_digits=6,
+        max_digits=6,  # 2 digits (-90 to 90) + 4 decimal places
         decimal_places=4,  # See https://xkcd.com/2170/ for precision rationale
         validators=[
             MaxValueValidator(90),
@@ -23,7 +23,7 @@ class Marker(models.Model):
 
     lng = models.DecimalField(
         verbose_name="zeměpisná délka",
-        max_digits=7,
+        max_digits=7,  # 3 digits (-180 to 180) + 4 decimal places
         decimal_places=4,  # See https://xkcd.com/2170/ for precision rationale
         validators=[
             MaxValueValidator(180),
