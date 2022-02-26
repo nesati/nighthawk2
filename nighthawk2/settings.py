@@ -164,5 +164,6 @@ REST_FRAMEWORK = {
 
 # Allow CORS in development
 
-CORS_ALLOW_ALL_ORIGINS = True
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
 
