@@ -31,7 +31,7 @@ class Marker(models.Model):
         ]
     )
 
-    description = models.TextField(verbose_name="popis")
+    description = models.TextField(verbose_name="popis", blank=True, default='')
 
     def __str__(self):
         return self.title
@@ -48,7 +48,7 @@ class Image(models.Model):
 
     year = models.IntegerField(verbose_name="rok")
     source_name = models.CharField(verbose_name="název zdroje", max_length=100)
-    source_url = models.URLField(verbose_name="adresa zdroje")
+    source_url = models.URLField(verbose_name="adresa zdroje", blank=True, default='')
     media = models.ImageField(verbose_name="obrázek")
     marker = models.ForeignKey(Marker, on_delete=models.CASCADE, related_name='marker_images')
 
