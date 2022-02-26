@@ -16,3 +16,9 @@ class MarkerSerializer(serializers.ModelSerializer):
         model = AcceptedMarker
         fields = '__all__'
 
+
+class MarkerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AcceptedMarker
+        exclude = ['description']
+
