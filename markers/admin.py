@@ -69,6 +69,7 @@ class MarkerProposalAdmin(MarkerAdmin):
 
         if request.method == 'GET':
             context = {
+                **self.admin_site.each_context(request),
                 'opts': MarkerProposal._meta,
                 'proposal_name': proposal,
                 'proposal_id': proposal.pk

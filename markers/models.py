@@ -13,7 +13,7 @@ class Marker(models.Model):
 
     lat = models.DecimalField(
         verbose_name="zeměpisná šířka",
-        max_digits=6,
+        max_digits=6,  # 2 digits (-90 to 90) + 4 decimal places
         decimal_places=4,  # See https://xkcd.com/2170/ for precision rationale
         validators=[
             MaxValueValidator(90),
@@ -23,7 +23,7 @@ class Marker(models.Model):
 
     lng = models.DecimalField(
         verbose_name="zeměpisná délka",
-        max_digits=7,
+        max_digits=7,  # 3 digits (-180 to 180) + 4 decimal places
         decimal_places=4,  # See https://xkcd.com/2170/ for precision rationale
         validators=[
             MaxValueValidator(180),
@@ -31,7 +31,7 @@ class Marker(models.Model):
         ]
     )
 
-    description = models.TextField(verbose_name="popis")
+    description = models.TextField(verbose_name="popis", blank=True, default='')
 
     def __str__(self):
         return self.title
@@ -48,7 +48,7 @@ class Image(models.Model):
 
     year = models.IntegerField(verbose_name="rok")
     source_name = models.CharField(verbose_name="název zdroje", max_length=100)
-    source_url = models.URLField(verbose_name="adresa zdroje")
+    source_url = models.URLField(verbose_name="adresa zdroje", blank=True, default='')
     media = models.ImageField(verbose_name="obrázek")
     marker = models.ForeignKey(Marker, on_delete=models.CASCADE, related_name='marker_images')
 
