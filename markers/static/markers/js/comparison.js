@@ -5,9 +5,9 @@ function compare(img1, img2) {
     const div = document.createElement("div")
     div.className = "comparison"
     div.innerHTML = `
-        <img class="img-right img-comp-overlay" src="` + img2.url + `">
+        <img class="img-right img-comp-overlay" src="` + img2.media + `">
         <div class="img-comp-overlap img-comp-overlay">
-            <img class="img-left" src="` + img1.url + `">
+            <img class="img-left" src="` + img1.media + `">
         </div>`
 
     div.getElementsByClassName("img-right")[0].onload = download_progess
@@ -18,8 +18,12 @@ function compare(img1, img2) {
 
     title.innerHTML = `
         Srovnání mezi lety
-        <span id="img-right-year">` + img1.year + `</span>&nbsp;<sup>` + img1.attribution + `</sup>&nbsp;(vlevo) a
-        <span id="img-left-year">` + img2.year + `</span>&nbsp;<sup>` + img2.attribution + `</sup>&nbsp;(vpravo)
+        <span id="img-right-year">` + img1.year + `</span><sup>
+            <a href="` + img1.source_url + `">` + img1.source_name + `</a>
+        </sup> (vlevo) a
+        <span id="img-left-year">` + img2.year + `</span> <sup>
+            <a href="` + img2.source_url + `">` + img2.source_name + `</a>
+        </sup> (vpravo)
     `
 
     document.getElementById("compare").appendChild(title)

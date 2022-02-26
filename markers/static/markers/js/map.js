@@ -26,29 +26,24 @@ const markers = L.markerClusterGroup({
 
 map.addLayer(markers);
 
-var setInnerHTML = function(elm, html) { // does run <script> tags in HTML
-    elm.innerHTML = html;
-    Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
-        const newScript = document.createElement("script");
-        Array.from(oldScript.attributes)
-            .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
-        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-        oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-}
-
-fetch("markers.json").then(r => {
+fetch("/markers/?format=json").then(r => {
     if (r.ok) {
         r.json().then(data => {
             data.forEach(val => {
-                let marker = L.marker([val["lat"], val["lng"]], {icon: photoIcon})
-                    .bindPopup(val["title"])
+                let marker = L.marker([val.lat, val.lng], {icon: photoIcon})
+                    .bindPopup(val.title)
                     .on('click', function (e) {
                         reset()
                         document.getElementById('title-of-comparison').innerHTML = val["title"]
-                        fetch("places/" + val["desc"]).then(r => {
-                            r.text().then(html => {
-                                setInnerHTML(document.getElementById('description'), html)
+                        fetch("/markers/"+val.id+"/?format=json").then(r => {
+                            r.json().then(details => {
+                                document.getElementById('description').innerText = details.description
+                                details.marker_images.sort(function(img1, img2) {
+                                    return img1.year - img2.year
+                                })
+                                for(let i = 0; i < details.marker_images.length-1; i++) {
+                                    compare(details.marker_images[i], details.marker_images[i+1])
+                                }
                             });
                         });
                     })
