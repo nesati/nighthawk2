@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'markers.apps.MarkersConfig',
     'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -120,24 +122,29 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # User-uploaded files
 # https://docs.djangoproject.com/en/4.0/topics/files/
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
+
 # Redirect to admin site after login
 
 LOGIN_REDIRECT_URL = '/admin'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # User friendly site name
 
 SITE_NAME = 'Krajina za školou'
+
 
 # Disable browsable API in production
 
@@ -153,4 +160,9 @@ if DEBUG:
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }
+
+
+# Allow CORS in development
+
+CORS_ALLOW_ALL_ORIGINS = True
 
