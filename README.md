@@ -5,7 +5,7 @@ Tento projekt je inspirován webovými stránkami [krajinazaskolou.cz](https://w
 
 Pracovní název je *nighthawk*, v tomto repositáři se nachází již druhá verze, využívající Django.
 
-Administrační prostředí (`/admin`) umožňuje přihlášeným uživatelům přidávat návrhy bodů. Uživatelé s příslušným oprávněním (`accept_markerproposal`) mohou návrhy přijímat, což se promítne v API (`/markers`), ze kterého ([TODO](https://taiga.k4r.dev/project/x/task/130)) body načítá frontend.
+Administrační prostředí (`/admin`) umožňuje přihlášeným uživatelům přidávat návrhy bodů. Uživatelé s příslušným oprávněním (`accept_markerproposal`) mohou návrhy přijímat, což se promítne v API (`/markers`), ze kterého body načítá frontend.
 
 ## Uživatelská dokumentace
 [TODO](https://taiga.k4r.dev/project/x/us/118)
