@@ -13,9 +13,10 @@ Administrační prostředí (`/admin`) umožňuje přihlášeným uživatelům p
 
 ## Development
 1. Nainstalovat závislosti `pip install -r requirements.txt`
-2. Inicializovat databázi `python manage.py migrate`
-3. Vytvořit superuživatele (administrátorský účet) `python manage.py createsuperuser`
-4. Spustit server `python manage.py runserver`
-5. Přihlásit se a přidat body přes `/admin`
-6. Nyní je možné získat jejich přehled přes API GET requestem na `/markers`
-7. Detail bodu včetně přidružených obrázků a popisku lze získat GET requestem na `/markers/<id>`
+2. Vytvořit .env `python gen_env.py --debug`
+3. Inicializovat databázi `python manage.py migrate`
+4. Vytvořit superuživatele (administrátorský účet) `python manage.py createsuperuser`
+5. Spustit server `python manage.py runserver`
+6. Přihlásit se a přidat body přes `/admin`
+7. Nyní je možné získat jejich přehled přes API GET requestem na `/markers`
+8. Detail bodu včetně přidružených obrázků a popisku lze získat GET requestem na `/markers/<id>`
