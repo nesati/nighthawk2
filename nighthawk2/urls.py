@@ -28,6 +28,7 @@ router = routers.DefaultRouter()
 router.register('', views.MarkerViewSet)
 
 urlpatterns = [
+    path('', views.index),
     path('admin/', admin.site.urls),
     path('markers/', include(router.urls)),
     path('accounts/login/', LoginView.as_view(

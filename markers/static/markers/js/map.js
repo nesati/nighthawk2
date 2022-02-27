@@ -1,7 +1,7 @@
 const map = L.map('map').setView([50.083333, 14.416667], 14);
 map.invalidateSize()
 const photoIcon = L.icon({
-    iconUrl: 'img/photo-icon.svg',
+    iconUrl: 'static/markers/img/photo-icon.svg',
 
     iconSize: [30, 30], // size of the icon
     iconAnchor: [15, 15], // point of the icon which will correspond to marker's location
