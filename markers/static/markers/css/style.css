@@ -1,0 +1,251 @@
+/* LAYOUT */
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: calc(100% - 30px);
+    width: 970px;
+    margin: 10px auto 50px auto;
+    padding: 0 15px;
+}
+
+h1 {
+    margin: 50px 20px 20px;
+    font-size: 2.5em;
+}
+
+h2, h3 {
+    margin-top: 30px;
+}
+
+sup {
+    font-size: 50%;
+    position: relative;
+    display: inline;
+}
+
+p {
+    text-align: justify;
+}
+
+pre {
+    background-color: #242526;
+    color: #fff;
+}
+
+.comparison {
+    margin: 0 auto;
+}
+
+.halfPRE{
+    display: inline-block;
+    width: calc(50% - 15px);
+    text-align: left;
+}
+
+.ObrazekVNavodu {
+    margin-top: 13px;
+}
+
+/* CODE HIGHLIGHTS */
+
+.key {
+    color: #ffc0cb;
+}
+
+.string {
+    color: #ccffcc;
+}
+
+/* THEME */
+
+body {
+    text-align: center;
+    justify-content: center;
+    background-color: #000;
+    color: #FFC300;
+    font-family: "Open Sans", sans-serif;
+}
+
+.align-left {
+    text-align: left;
+    justify-content: left;
+}
+
+.line-height20 {
+    line-height: 2;
+}
+
+.white {
+    color: white;
+}
+
+h1.subtitle {
+    font-style: italic;
+    font-size: 120%;
+    margin: 20px 20px 30px;
+}
+
+p {
+    color: white;
+}
+
+a {
+    color: #FFC300;
+}
+
+h3 {
+    color: white;
+}
+
+a:visited {
+    color: #FFC300;
+}
+
+code{
+    background-color: #333;
+    color: #fff;
+}
+
+.break {
+    height: 0;
+    border-bottom: #FFC300 2px solid;
+}
+
+#latitude, #longitude {
+    margin: 5px;
+}
+
+input.year, input.attribution, input.href {
+    margin: 5px;
+    font-size: 17px;
+    padding: 5px;
+}
+#title {
+    font-size: 17px;
+    border-bottom: solid 2px #FFC300;
+    margin: 15px 0;
+    padding: 5px;
+    font-weight: bold;
+    min-width: 50%;
+    max-width: calc(100% - 30px);
+}
+input {
+    background: #333;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    border-bottom: solid 1px #FFC300;
+    width: 200px;
+}
+input.year {
+    width: 85px;
+}
+input.imgfile {
+    display: inline-block;
+    width: 250px;
+}
+input:invalid {
+    border-color: red;
+}
+
+::placeholder {
+    color: #666;
+    font-weight: normal;
+}
+
+.formButton {
+    margin-top: 20px;
+    transition-duration: 0.2s;
+    background-color: #333;
+    color: #FFC300;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.formButton:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.fields_year_attribution_href{
+    margin: 15px 0;
+}
+/* MAP */
+
+#map {
+    height: 500px;
+}
+
+.leaflet-tile {
+    filter: grayscale(1) invert(1) brightness(1.2);
+}
+
+.leaflet-container a {
+    color: #000000;
+    font-size: 1em;
+}
+
+.leaflet-popup-content {
+    font-family: "Open Sans", sans-serif;
+}
+
+.marker-cluster {
+    background-color: rgba(255, 195, 0, 0.7);
+    border-radius: 50%;
+    font: 14px/2 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cluster {
+    height: 70%;
+    width: 70%;
+    background-color: rgba(255, 195, 0, 1);
+    border-radius: 50%;
+    font: 14px/2 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: black;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* COMPARISON */
+
+.comparison {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-left, .img-right {
+    display: block;
+    vertical-align: middle;
+}
+
+.img-comp-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.img-comp-overlap {
+    overflow: hidden;
+}
+
+.img-comp-slider {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    /*set the appearance of the slider:*/
+    width: 40px;
+    height: 40px;
+    background-color: #FFC300;
+    opacity: 0.8;
+    border-radius: 50%;
+}
