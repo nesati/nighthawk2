@@ -25,9 +25,18 @@ class MarkerAdmin(admin.ModelAdmin):
 
     captured_in_years.short_description = "v letech"
 
+    def created_by_username(self, obj):
+        if obj.created_by:
+            return obj.created_by.username
+        else:
+            return "není známo"
+
+    created_by_username.short_description = "vytvořeno uživatelem"
+
     list_display = (
         '__str__',
-        'captured_in_years'
+        'captured_in_years',
+        'created_by_username'
     )
 
     inlines = [
