@@ -280,17 +280,3 @@ input:invalid {
 .btn:hover {
     filter: brightness(1.3);
 }
-
-.mem {
-    background: wheat !important;
-    color: red !important;
-    font-family: comic sans ms;
-    position: absolute;
-    top: 73px;
-    right: 81px;
-    transform: rotate(30deg);
-}
-
-.mem::after, .mem::before {
-    content: "!!!";
-}
