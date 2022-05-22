@@ -102,7 +102,8 @@ class MarkerProposalAdmin(MarkerAdmin):
                 title=proposal.title,
                 lat=proposal.lat,
                 lng=proposal.lng,
-                description=proposal.description
+                description=proposal.description,
+                created_by=proposal.created_by,
             )
 
             Image.objects.filter(marker=proposal).update(marker=accepted_marker)
