@@ -8,7 +8,8 @@ WORKDIR /nighthawk
 
 RUN pip install -r requirements.txt
 
-RUN python manage.py collectstatic
+# Secret key is not actually used, it just needs to be defined
+RUN SECRET_KEY="mock-key" DEBUG="False" python manage.py collectstatic
 
 RUN pip install gunicorn
 
