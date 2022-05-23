@@ -6,7 +6,7 @@ WORKDIR /nighthawk
 
 RUN pip install -r requirements.txt
 
-RUN pip install gunicorn
+RUN apt install gunicorn
 
 RUN chmod +x entrypoint.sh
 
