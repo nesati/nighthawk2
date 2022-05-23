@@ -6,8 +6,6 @@ WORKDIR /nighthawk
 
 RUN pip install -r requirements.txt
 
-RUN python gen_env.py
+RUN chmod +x entrypoint.sh
 
-RUN python manage.py migrate
-
-CMD python manage.py runserver
+CMD entrypoint.sh
