@@ -4,4 +4,4 @@ fi
 
 python manage.py migrate
 
-python manage.py runserver
+python gunicorn /nighthawk/nighthawk2/wsgi.py
