@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 RUN python manage.py collectstatic
 
-RUN apt install gunicorn
+RUN pip install gunicorn
 
 RUN chmod +x entrypoint.sh
 
