@@ -4,4 +4,4 @@ fi
 
 python manage.py migrate
 
-python gunicorn /nighthawk/nighthawk2/wsgi.py
+gunicorn nighthawk2.wsgi -b 0.0.0.0:8000
