@@ -1,4 +1,4 @@
-if [ ! -d ".env" ]; then
+if [ ! -f ".env" ]; then
   python gen_env.py
 fi
 
