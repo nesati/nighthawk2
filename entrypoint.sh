@@ -1,3 +1,7 @@
+#!/bin/sh
+
+cd /nighthawk
+
 if [ ! -f ".env" ]; then
   python gen_env.py
 fi
