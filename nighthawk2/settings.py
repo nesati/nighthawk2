@@ -31,7 +31,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(distutils.util.strtobool(os.environ['DEBUG']))
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "beta.za.gjk.cat", "za.gjk.cat"]
 
 
 # Application definition
