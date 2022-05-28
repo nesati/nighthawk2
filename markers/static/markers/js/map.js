@@ -42,7 +42,18 @@ fetch("/markers/?format=json").then(r => {
                                     return img1.year - img2.year
                                 })
                                 for(let i = 0; i < details.marker_images.length-1; i++) {
-                                    compare(details.marker_images[i], details.marker_images[i+1])
+                                    let callback;
+                                    if (i === 0) {
+                                        callback = function () { // only scroll after first images are loaded
+                                            document.getElementById('title-of-comparison').scrollIntoView({
+                                                block: 'start',
+                                                behavior: 'smooth'
+                                            });
+                                        }
+                                    } else {
+                                        callback = null
+                                    }
+                                    compare(details.marker_images[i], details.marker_images[i+1], callback)
                                 }
                             });
                         });

@@ -1,4 +1,4 @@
-function compare(img1, img2) {
+function compare(img1, img2, callback=null) {
     // download images
     let downloaded = 0
 
@@ -34,6 +34,9 @@ function compare(img1, img2) {
         if (downloaded === 2) {
             // update comparator
             resize()
+            if (callback !== null) {
+                callback()
+            }
         }
     }
 }
