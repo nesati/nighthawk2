@@ -27,7 +27,7 @@ sup {
     display: inline;
 }
 
-p {
+p, #description {
     text-align: justify;
 }
 
@@ -89,7 +89,7 @@ h1.subtitle {
     margin: 20px 20px 30px;
 }
 
-p {
+p, #description {
     color: white;
 }
 
