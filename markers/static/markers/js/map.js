@@ -26,6 +26,7 @@ const markers = L.markerClusterGroup({
 
 map.addLayer(markers);
 
+let jump_to_marker = null
 fetch("/markers/?format=json").then(r => {
     if (r.ok) {
         r.json().then(data => {
@@ -38,6 +39,7 @@ fetch("/markers/?format=json").then(r => {
                         fetch("/markers/"+val.id+"/?format=json").then(r => {
                             r.json().then(details => {
                                 document.getElementById('description').innerText = details.description
+                                window.top.location.hash = '#bod'+val.id
                                 details.marker_images.sort(function(img1, img2) {
                                     return img1.year - img2.year
                                 })
@@ -59,7 +61,13 @@ fetch("/markers/?format=json").then(r => {
                         });
                     })
                 markers.addLayer(marker);
+                if ('#bod'+val.id === window.top.location.hash) {
+                    jump_to_marker = marker
+                }
             })
+            if (jump_to_marker !== null) {
+                jump_to_marker.fire('click')
+            }
         });
     }
 });
