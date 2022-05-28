@@ -31,6 +31,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(distutils.util.strtobool(os.environ['DEBUG']))
 
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 ALLOWED_HOSTS = ["localhost", "beta.za.gjk.cat", "za.gjk.cat"]
 
 
