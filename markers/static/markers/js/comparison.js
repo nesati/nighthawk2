@@ -17,7 +17,7 @@ function compare(img1, img2, callback = null) {
     const title = document.createElement("h3")
 
     let html;
-    html += `
+    html = `
         Srovnání mezi lety
         <span id="img-right-year">` + img1.year + `</span><sup>`
     if (img1.source_url !== '') {
