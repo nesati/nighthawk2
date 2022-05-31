@@ -1,10 +1,57 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <title>Návod</title>
+	<meta charset="UTF-8">
+	<title>Návod | Krajina za školou</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<!--scripts & style-->
+	<link href="{% static 'markers/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'markers/css/navod.css' %}" rel="stylesheet">
 </head>
 <body>
-
+<header>
+	<a href="/"><h1>Krajina za školou</h1></a>
+	<h1 class="subtitle">Návod</h1>
+	<div class="break"></div>
+</header>
+<main>
+	<h2>Jak přidat místo?</h2>
+	<ol>
+		<li>Otevřte <a href='/admin' target="_blank">administrační prostředí</a>.
+		</li>
+		<li>Přihlaste se přihlašovacími údaji, které obdržíte od svého učitele.</li>
+		<li>Zde klikněte na tlačítko <a href='/admin/markers/markerproposal/add/'><code>+ přidat</code></a> u <a
+				href='/admin/markers/markerproposal/'><code>návrhy bodů</code></a> v sekci <a
+				href='/admin/markers/'><code>body</code></a>.
+		</li>
+		<li>Vyplňte formulář.
+			<ul>
+				<li>Pro získání souřadnic lze použít např. <a
+						href='https://maps.google.cz' target="_blank">mapy Google</a> nebo <a href='https://mapy.cz' target="_blank">Mapy.cz</a>.
+				</li>
+				<li>Nahrajte obrázky pomocí tlačítka <code>Zvolit soubor</code> a ke každému doplňte informace o roku
+					pořízení a zdroje.
+				</li>
+				<li>K obrázkům které jste fotili vy je zdrojem vaše jméno.</li>
+				<li>Pokud chcete přidat více než dva obrázky klikněte na tlačítko <code>+ Přidat
+					Obrázek</code>.
+				</li>
+				<li>Porovnání se pak na hlavní stránce zobrazí systémem 1 s 2, 3 s 4 atd. Je-li počet obrázků lichý bude
+					automaticky zvolen systém 1 s 2, 2 s 3 atd.
+				</li>
+			</ul>
+		</li>
+		<li>Až bude vše vyplněné nezapomeňte zmáčknout tlačítko <code>ULOŽIT</code>.
+		</li>
+	</ol>
+	<p>
+		Kliknutím na <a href='/admin/markers/markerproposal/'><code>návrhy bodů</code></a>
+		v sekci <a href='/admin/markers/'><code>body</code></a> můžete dodatečně upravovat vámi přidané body
+		dokud nejsou zkontrolované učitelem a přidány do mapy.
+	</p>
+</main>
 </body>
 </html>
