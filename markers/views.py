@@ -17,3 +17,7 @@ class MarkerViewSet(viewsets.ReadOnlyModelViewSet):
 
 def index(request):
     return render(request, 'markers/index.html')
+
+
+def navod(request):
+    return render(request, 'markers/navod.html')
