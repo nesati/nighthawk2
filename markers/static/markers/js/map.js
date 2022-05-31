@@ -40,9 +40,6 @@ fetch("/markers/?format=json").then(r => {
                             r.json().then(details => {
                                 document.getElementById('description').innerText = details.description
                                 window.top.location.hash = '#bod'+val.id
-                                details.marker_images.sort(function(img1, img2) {
-                                    return img1.year - img2.year
-                                })
                                 for(let i = 0; i < details.marker_images.length-1; i++) {
                                     let callback;
                                     if (i === 0) {
