@@ -19,15 +19,15 @@ function compare(img1, img2, callback = null) {
     let html;
     html = `
         Srovnání mezi lety
-        <span id="img-right-year">` + img1.year + `</span><sup>`
+        <span id="img-right-year">` + img1.year + `</span>&nbsp;<sup>`
     if (img1.source_url !== '') {
         html += `<a href="` + img1.source_url + `">` + img1.source_name + `</a>`
     } else {
         html += img1.source_name
     }
     html += `   
-        </sup> (vlevo) a
-        <span id="img-left-year">` + img2.year + `</span> <sup>`
+        </sup>&nbsp;(vlevo) a
+        <span id="img-left-year">` + img2.year + `</span>&nbsp;<sup>`
 
     if (img2.source_url !== '') {
         html += `<a href="` + img2.source_url + `">` + img2.source_name + `</a>`
@@ -35,7 +35,7 @@ function compare(img1, img2, callback = null) {
         html += img2.source_name
     }
     html += `
-        </sup> (vpravo)
+        </sup>&nbsp;(vpravo)
     `
     title.innerHTML = html
 
