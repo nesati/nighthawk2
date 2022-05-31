@@ -1,6 +1,7 @@
 ol {
     color: #FFF;
     text-align: left;
+    padding: 0 40px;
 }
 
 code {
@@ -10,4 +11,9 @@ code {
 
 header a {
     text-decoration: none;
+}
+
+img {
+    width: 100%;
+    margin: 10px auto;
 }
