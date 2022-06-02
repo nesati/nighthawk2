@@ -39,8 +39,9 @@ fetch("/markers/?format=json").then(r => {
                         fetch("/markers/"+val.id+"/?format=json").then(r => {
                             r.json().then(details => {
                                 document.getElementById('description').innerText = details.description
-                                window.top.location.hash = '#bod'+val.id
-                                for(let i = 0; i < details.marker_images.length-1; i++) {
+                                window.top.location.hash = '#bod' + val.id
+                                let step = details.marker_images.length % 2 === 0 ? 2 : 1
+                                for (let i = 0; i < details.marker_images.length - 1; i += step) {
                                     let callback;
                                     if (i === 0) {
                                         callback = function () { // only scroll after first images are loaded
