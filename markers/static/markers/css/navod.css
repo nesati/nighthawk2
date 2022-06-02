@@ -17,3 +17,7 @@ img {
     width: 100%;
     margin: 10px auto;
 }
+p {
+    -moz-text-align-last: left !important; /* Code for Firefox */
+    text-align-last: left !important;
+}

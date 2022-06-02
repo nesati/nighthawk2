@@ -29,6 +29,8 @@ sup {
 
 p, #description {
     text-align: justify;
+    -moz-text-align-last: center; /* Code for Firefox */
+    text-align-last: center;
 }
 
 pre {
