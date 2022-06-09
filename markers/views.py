@@ -21,3 +21,6 @@ def index(request):
 
 def navod(request):
     return render(request, 'markers/navod.html')
+
+def seznam(request):
+    return render(request, 'markers/seznam.html')

@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="UTF-8">
+	<title>Seznam bodů | Krajina za školou</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<!--scripts & style-->
+	<link href="{% static 'markers/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'markers/css/seznam.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+	<a href="/"><h1>Krajina za školou</h1></a>
+	<h1 class="subtitle">Seznam bodů</h1>
+	<div class="break"></div>
+</header>
+<main>
+	<table id="markers"></table>
+	<script>
+		const table = document.getElementById('markers')
+        fetch("/markers/?format=json").then(r => {
+            if (r.ok) {
+                r.json().then(data => {
+                    data.sort((a, b) => {
+                        let ta = a.title.toLowerCase(),
+                            tb = b.title.toLowerCase();
+
+                        if (ta < tb) {
+                            return -1;
+                        }
+                        if (ta > tb) {
+                            return 1;
+                        }
+                        return 0;
+					})
+                    data.forEach(val => {
+                        let tr = document.createElement('tr')
+
+						let title = document.createElement('td')
+						title.innerHTML = "<a href='/#bod"+val.id+"'>"+val.title+"</a>"
+						tr.appendChild(title)
+
+						table.appendChild(tr)
+                    })
+                });
+            }
+        });
+	</script>
+</main>
+</body>
+</html>
