@@ -25,9 +25,18 @@ class MarkerAdmin(admin.ModelAdmin):
 
     captured_in_years.short_description = "v letech"
 
+    def created_by_username(self, obj):
+        if obj.created_by:
+            return obj.created_by.username
+        else:
+            return "není známo"
+
+    created_by_username.short_description = "vytvořeno uživatelem"
+
     list_display = (
         '__str__',
-        'captured_in_years'
+        'captured_in_years',
+        'created_by_username'
     )
 
     inlines = [
@@ -45,6 +54,17 @@ class MarkerProposalAdmin(MarkerAdmin):
         else:
             self.list_display = default
         return super().changelist_view(request, extra_context)
+
+    def get_queryset(self, request):
+        queryset = super(MarkerProposalAdmin, self).get_queryset(request)
+        if request.user.has_perm('markers.accept_markerproposal'):
+            return queryset
+        return queryset.filter(created_by=request.user)
+
+    def save_model(self, request, obj, form, change):
+        if not obj.created_by:
+            obj.created_by = request.user
+        super(MarkerProposalAdmin, self).save_model(request, obj, form, change)
 
     def accept_button(self, obj):
         return format_html('<a class="button" href="{}" style="text-decoration: none">Přijmout</a>',
@@ -82,7 +102,8 @@ class MarkerProposalAdmin(MarkerAdmin):
                 title=proposal.title,
                 lat=proposal.lat,
                 lng=proposal.lng,
-                description=proposal.description
+                description=proposal.description,
+                created_by=proposal.created_by,
             )
 
             Image.objects.filter(marker=proposal).update(marker=accepted_marker)

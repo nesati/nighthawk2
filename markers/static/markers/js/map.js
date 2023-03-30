@@ -26,6 +26,7 @@ const markers = L.markerClusterGroup({
 
 map.addLayer(markers);
 
+let jump_to_marker = null
 fetch("/markers/?format=json").then(r => {
     if (r.ok) {
         r.json().then(data => {
@@ -38,17 +39,33 @@ fetch("/markers/?format=json").then(r => {
                         fetch("/markers/"+val.id+"/?format=json").then(r => {
                             r.json().then(details => {
                                 document.getElementById('description').innerText = details.description
-                                details.marker_images.sort(function(img1, img2) {
-                                    return img1.year - img2.year
-                                })
-                                for(let i = 0; i < details.marker_images.length-1; i++) {
-                                    compare(details.marker_images[i], details.marker_images[i+1])
+                                window.top.location.hash = '#bod' + val.id
+                                let step = details.marker_images.length % 2 === 0 ? 2 : 1
+                                for (let i = 0; i < details.marker_images.length - 1; i += step) {
+                                    let callback;
+                                    if (i === 0) {
+                                        callback = function () { // only scroll after first images are loaded
+                                            document.getElementById('title-of-comparison').scrollIntoView({
+                                                block: 'start',
+                                                behavior: 'smooth'
+                                            });
+                                        }
+                                    } else {
+                                        callback = null
+                                    }
+                                    compare(details.marker_images[i], details.marker_images[i+1], callback)
                                 }
                             });
                         });
                     })
                 markers.addLayer(marker);
+                if ('#bod'+val.id === window.top.location.hash) {
+                    jump_to_marker = marker
+                }
             })
+            if (jump_to_marker !== null) {
+                jump_to_marker.fire('click')
+            }
         });
     }
 });

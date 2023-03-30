@@ -1,4 +1,4 @@
-function compare(img1, img2) {
+function compare(img1, img2, callback = null) {
     // download images
     let downloaded = 0
 
@@ -16,15 +16,29 @@ function compare(img1, img2) {
     // create comparison title
     const title = document.createElement("h3")
 
-    title.innerHTML = `
+    let html;
+    html = `
         Srovnání mezi lety
-        <span id="img-right-year">` + img1.year + `</span><sup>
-            <a href="` + img1.source_url + `">` + img1.source_name + `</a>
-        </sup> (vlevo) a
-        <span id="img-left-year">` + img2.year + `</span> <sup>
-            <a href="` + img2.source_url + `">` + img2.source_name + `</a>
-        </sup> (vpravo)
+        <span id="img-right-year">` + img1.year + `</span>&nbsp;<sup>`
+    if (img1.source_url !== '') {
+        html += `<a href="` + img1.source_url + `">` + img1.source_name + `</a>`
+    } else {
+        html += img1.source_name
+    }
+    html += `   
+        </sup>&nbsp;(vlevo) a
+        <span id="img-left-year">` + img2.year + `</span>&nbsp;<sup>`
+
+    if (img2.source_url !== '') {
+        html += `<a href="` + img2.source_url + `">` + img2.source_name + `</a>`
+    } else {
+        html += img2.source_name
+    }
+    html += `
+        </sup>&nbsp;(vpravo)
     `
+    title.innerHTML = html
+
 
     document.getElementById("compare").appendChild(title)
     document.getElementById("compare").appendChild(div)
@@ -34,6 +48,9 @@ function compare(img1, img2) {
         if (downloaded === 2) {
             // update comparator
             resize()
+            if (callback !== null) {
+                callback()
+            }
         }
     }
 }
@@ -61,14 +78,14 @@ function resize() {
         const img = el.getElementsByClassName("img-right")[0]
         const img2 = el.getElementsByClassName("img-left")[0]
         if (img.width < img.height) {
-            width = Math.min(width, img.width / img.height  * 720)
+            width = Math.min(width, img.width / img.height * 720)
         }
 
         el.getElementsByClassName("img-right")[0].style.width = width + "px"
         el.getElementsByClassName("img-left")[0].style.width = width + "px"
         el.getElementsByClassName("img-comp-overlap")[0].style.width = width + "px"
         el.style.width = width + "px"
-        el.style.height = Math.min( img.height / img.width * width, img2.height / img2.width * width) + "px"
+        el.style.height = Math.min(img.height / img.width * width, img2.height / img2.width * width) + "px"
     });
 
     const y = [].slice.call(document.getElementsByClassName("img-comp-overlap"));

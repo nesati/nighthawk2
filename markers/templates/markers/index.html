@@ -8,6 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!--font-->
+    <!-- We should prepare €100: https://www.theregister.com/2022/01/31/website_fine_google_fonts_gdpr/ -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
     <!--leaflet-->
@@ -39,12 +40,15 @@
     <p>
         Tento projekt je inspirován webovými stránkami
         <a href="https://www.krajinazaskolou.cz/">krajinazaskolou.cz</a>, nicméně jsme jej mírně zmodernizovali
-        a přizpůsobili pro potřeby <b>Gymnázia Jana Keplera</b>. Každý může přispět dvojice fotografií
+		a přizpůsobili pro potřeby <b>Gymnázia Jana Keplera</b>. Každý může přispět dvojice fotografií
         pro nová místa.<br>
 		<div class="center">
-			<a class="btn mem" href="/admin">Přidej místo!</a>
+			<a class="btn" href="/navod">Přidej místo!</a>
 		</div>
     </p>
+	<p>
+		<a href="/seznam">Seznam všech bodů</a>
+	</p>
     <div class="maxwidth" id="map"></div>
     <script src="{% static 'markers/js/map.js' %}" type="text/javascript"></script>
     <h2 id="title-of-comparison"></h2>

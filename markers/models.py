@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -32,6 +33,8 @@ class Marker(models.Model):
     )
 
     description = models.TextField(verbose_name="popis", blank=True, default='')
+
+    created_by = models.ForeignKey(User, editable=False, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.title
