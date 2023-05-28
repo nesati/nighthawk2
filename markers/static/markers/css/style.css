@@ -64,12 +64,14 @@ pre {
 
 /* THEME */
 
-body {
+body.theme, div.theme {
     text-align: center;
     justify-content: center;
-    background-color: #000;
     color: #FFC300;
     font-family: "Open Sans", sans-serif;
+}
+body.theme {
+    background-color: #000;
 }
 
 .align-left {
@@ -91,23 +93,23 @@ h1.subtitle {
     margin: 20px 20px 30px;
 }
 
-p, #description {
+body.theme p, div.theme p, #description {
     color: white;
 }
 
-a {
+body.theme a, div.theme a {
     color: #FFC300;
 }
 
-h3 {
+body.theme h3, div.theme h3 {
     color: white;
 }
 
-a:visited {
+body.theme a:visited, div.theme a:visited {
     color: #FFC300;
 }
 
-code {
+body.theme code, div.theme code {
     background-color: #333;
     color: #fff;
 }
@@ -137,7 +139,7 @@ input.year, input.attribution, input.href {
     max-width: calc(100% - 30px);
 }
 
-input {
+body.theme input, div.theme input {
     background: #333;
     border: 0;
     outline: 0;
@@ -194,7 +196,7 @@ input:invalid {
 }
 
 .leaflet-container a {
-    color: #000000;
+    color: #000000 !important;
     font-size: 1em;
 }
 
@@ -266,7 +268,7 @@ input:invalid {
 .btn {
     display: inline-block;
     background: #FFC300;
-    color: #000;
+    color: #000 !important;
     padding: 5px;
     border-radius: 5px;
     text-decoration: 0;
@@ -276,7 +278,7 @@ input:invalid {
 }
 
 .btn:visited {
-    color: #000;
+    color: #000 !important;
 }
 
 .btn:hover {
