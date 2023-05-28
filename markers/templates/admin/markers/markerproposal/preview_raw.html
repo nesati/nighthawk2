@@ -1,24 +1,27 @@
 {% load static %}
 
-<!--jquery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+<html lang="cs">
+<head>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 
-<!--scripts & style-->
-<script src="{% static 'markers/js/comparison.js' %}" type="text/javascript"></script>
-<link href="{% static 'markers/css/style.css' %}" rel="stylesheet">
-
-<div class="theme">
-	<h2 id="title-of-comparison" style="font-size: 24px;"></h2>
-	<div id="description"></div>
-	<div id="compare"></div>
-</div>
+    <!--scripts & style-->
+    <script src="{% static 'markers/js/comparison.js' %}" type="text/javascript"></script>
+    <link href="{% static 'markers/css/style.css' %}" rel="stylesheet">
+</head>
+<body class="theme" style="padding-bottom: 24px">
+<h2 id="title-of-comparison" style="font-size: 24px;"></h2>
+<div id="description"></div>
+<div id="compare"></div>
 
 <script>
-	const markerData = {{ proposal_json|safe }};
-	document.getElementById('title-of-comparison').innerHTML = markerData.title
-	document.getElementById('description').innerText = markerData.description
-	let step = markerData.marker_images.length % 2 === 0 ? 2 : 1
-	for (let i = 0; i < markerData.marker_images.length - 1; i += step) {
-		compare(markerData.marker_images[i], markerData.marker_images[i + 1], null)
-	}
+    const markerData = {{ proposal_json|safe }};
+    document.getElementById('title-of-comparison').innerHTML = markerData.title
+    document.getElementById('description').innerText = markerData.description
+    let step = markerData.marker_images.length % 2 === 0 ? 2 : 1
+    for (let i = 0; i < markerData.marker_images.length - 1; i += step) {
+        compare(markerData.marker_images[i], markerData.marker_images[i + 1], null)
+    }
 </script>
+</body>
+</html>

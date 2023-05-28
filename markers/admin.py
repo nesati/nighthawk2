@@ -89,6 +89,9 @@ class MarkerProposalAdmin(MarkerAdmin):
             path('<int:proposal_id>/preview/',
                  self.admin_site.admin_view(self.preview),
                  name='preview'),
+            path('<int:proposal_id>/preview-raw/',
+                 self.admin_site.admin_view(self.preview_raw),
+                 name='preview_raw'),
         ]
         return my_urls + urls
 
@@ -103,10 +106,21 @@ class MarkerProposalAdmin(MarkerAdmin):
             'opts': MarkerProposal._meta,
             'proposal': proposal,
             'proposal_id': proposal.pk,
-            'proposal_json': json.dumps(MarkerProposalSerializer(proposal).data)
         }
 
         return TemplateResponse(request, 'admin/markers/markerproposal/preview.html', context)
+
+    def preview_raw(self, request, proposal_id):
+        if request.method != "GET":
+            # Method not allowed
+            return HttpResponse(status=405)
+
+        proposal = MarkerProposal.objects.get(pk=proposal_id)
+        context = {
+            'proposal_json': json.dumps(MarkerProposalSerializer(proposal).data)
+        }
+
+        return TemplateResponse(request, 'admin/markers/markerproposal/preview_raw.html', context)
 
     def accept_proposal(self, request, proposal_id):
         if not request.user.has_perm('markers.accept_markerproposal'):
@@ -120,7 +134,6 @@ class MarkerProposalAdmin(MarkerAdmin):
                 'opts': MarkerProposal._meta,
                 'proposal': proposal,
                 'proposal_id': proposal.pk,
-                'proposal_json': json.dumps(MarkerProposalSerializer(proposal).data)
             }
 
             return TemplateResponse(request, 'admin/markers/markerproposal/accept.html', context)
