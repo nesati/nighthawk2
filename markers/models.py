@@ -34,7 +34,8 @@ class Marker(models.Model):
 
     description = models.TextField(verbose_name="popis", blank=True, default='')
 
-    created_by = models.ForeignKey(User, editable=False, null=True, blank=True, on_delete=models.SET_NULL)
+    created_by = models.ForeignKey(User, editable=False, null=True, blank=True, on_delete=models.SET_NULL,
+                                   verbose_name="vytvořeno uživatelem")
 
     def __str__(self):
         return self.title

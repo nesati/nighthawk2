@@ -33,6 +33,11 @@ class MarkerAdmin(admin.ModelAdmin):
 
     created_by_username.short_description = "vytvořeno uživatelem"
 
+    def get_list_filter(self, request):
+        if request.user.has_perm('markers.accept_markerproposal'):
+            return *self.list_filter, 'created_by'
+        return self.list_filter
+
     list_display = (
         '__str__',
         'captured_in_years',
@@ -116,7 +121,7 @@ class MarkerProposalAdmin(MarkerAdmin):
             # Method not allowed
             return HttpResponse(status=405)
 
-    list_filter = (*MarkerAdmin.list_filter, 'ready')
+    list_filter = ('ready',)
 
 
 admin.site.register(AcceptedMarker, MarkerAdmin)
