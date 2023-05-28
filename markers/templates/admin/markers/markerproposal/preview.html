@@ -1,0 +1,13 @@
+{% extends "admin/markers/markerproposal/base.html" %}
+{% load i18n %}
+{% load admin_urls %}
+
+{% block breadcrumbs_last %}
+    <a href="{% url 'admin:markers_markerproposal_change' proposal_id %}">{{ proposal }}</a>
+    &rsaquo; Náhled
+{% endblock %}
+
+{% block content %}
+    <h1>Náhled bodu {{ proposal }}</h1>
+    {% include "admin/markers/markerproposal/preview_raw.html" %}
+{% endblock %}

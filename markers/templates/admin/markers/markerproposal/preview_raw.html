@@ -1,0 +1,6 @@
+<div id="preview"></div>
+
+<script>
+    const markerData = {{ proposal_json|safe }}
+    document.getElementById("preview").innerText = JSON.stringify(markerData)
+</script>

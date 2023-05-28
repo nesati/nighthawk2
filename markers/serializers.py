@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from markers.models import AcceptedMarker, Image
+from markers.models import AcceptedMarker, Image, MarkerProposal
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -9,7 +9,7 @@ class ImageSerializer(serializers.ModelSerializer):
         exclude = ['id', 'marker']
 
 
-class MarkerSerializer(serializers.ModelSerializer):
+class AcceptedMarkerSerializer(serializers.ModelSerializer):
     marker_images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
@@ -17,8 +17,16 @@ class MarkerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MarkerListSerializer(serializers.ModelSerializer):
+class AcceptedMarkerListSerializer(serializers.ModelSerializer):
     class Meta:
         model = AcceptedMarker
         exclude = ['description']
+
+
+class MarkerProposalSerializer(serializers.ModelSerializer):
+    marker_images = ImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = MarkerProposal
+        fields = '__all__'
 

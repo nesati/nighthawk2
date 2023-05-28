@@ -3,17 +3,18 @@
 {% load admin_urls %}
 
 {% block breadcrumbs_last %}
-    <a href="{% url 'admin:markers_markerproposal_change' proposal_id %}">{{ proposal_name }}</a>
+    <a href="{% url 'admin:markers_markerproposal_change' proposal_id %}">{{ proposal }}</a>
     &rsaquo; Přijmout
 {% endblock %}
 
 {% block content %}
     <h1>Opravdu chcete přijmout tento bod?</h1>
-    <p>Bod {{ proposal_name }} bude přesunut mezi přijaté a bude se zobrazovat v mapě.</p>
+    <p>Bod {{ proposal }} bude přesunut mezi přijaté a bude se zobrazovat v mapě.</p>
     <form method="post">
         {% csrf_token %}
         <div class="submit-row">
             <input type="submit" class="default" value="Ano, přijmout bod">
         </div>
     </form>
+    {% include "admin/markers/markerproposal/preview_raw.html" %}
 {% endblock %}

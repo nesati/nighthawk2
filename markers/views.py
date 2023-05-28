@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from markers.models import AcceptedMarker
-from markers.serializers import MarkerSerializer, MarkerListSerializer
+from markers.serializers import AcceptedMarkerSerializer, AcceptedMarkerListSerializer
 
 
 class MarkerViewSet(viewsets.ReadOnlyModelViewSet):
@@ -10,9 +10,9 @@ class MarkerViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return MarkerListSerializer
+            return AcceptedMarkerListSerializer
         else:
-            return MarkerSerializer
+            return AcceptedMarkerSerializer
 
 
 def index(request):

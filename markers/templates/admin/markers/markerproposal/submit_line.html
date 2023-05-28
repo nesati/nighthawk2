@@ -6,8 +6,12 @@
             {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
             <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}" class="deletelink">{% translate "Delete" %}</a></p>
         {% endif %}
-        {% if perms.markers.accept_markerproposal and original %}
-            <p class="acceptlink-box"><a href="{% url 'admin:accept' original.pk %}" class="acceptlink">{% translate 'Přijmout' %}</a></p>
+        {% if original %}
+            {% if perms.markers.accept_markerproposal %}
+                <p class="acceptlink-box"><a href="{% url 'admin:accept' original.pk %}" class="acceptlink">{% translate 'Přijmout' %}</a></p>
+            {% else %}
+                <p class="acceptlink-box"><a href="{% url 'admin:preview' original.pk %}" class="acceptlink">{% translate 'Náhled' %}</a></p>
+            {% endif %}
         {% endif %}
         {% if show_save_as_new %}<input type="submit" value="{% translate 'Save as new' %}" name="_saveasnew">{% endif %}
         {% if show_save_and_add_another %}<input type="submit" value="{% translate 'Save and add another' %}" name="_addanother">{% endif %}
