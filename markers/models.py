@@ -68,6 +68,8 @@ class MarkerProposal(Marker):
     Class for marker proposals created by students
     """
 
+    ready = models.BooleanField(verbose_name="připraveno ke schválení")
+
     class Meta:
         verbose_name = 'návrh bodu'
         verbose_name_plural = 'návrhy bodů'

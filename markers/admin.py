@@ -46,7 +46,7 @@ class MarkerAdmin(admin.ModelAdmin):
 
 class MarkerProposalAdmin(MarkerAdmin):
     def changelist_view(self, request, extra_context=None):
-        default = MarkerAdmin.list_display
+        default = (*MarkerAdmin.list_display, 'ready')
         if request.user.has_perm('markers.accept_markerproposal'):
             self.list_display = default + (
                 'accept_button',
@@ -115,6 +115,8 @@ class MarkerProposalAdmin(MarkerAdmin):
         else:
             # Method not allowed
             return HttpResponse(status=405)
+
+    list_filter = (*MarkerAdmin.list_filter, 'ready')
 
 
 admin.site.register(AcceptedMarker, MarkerAdmin)
