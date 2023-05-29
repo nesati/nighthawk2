@@ -106,6 +106,7 @@ class MarkerProposalAdmin(MarkerAdmin):
             'opts': MarkerProposal._meta,
             'proposal': proposal,
             'proposal_id': proposal.pk,
+            'title': f'Náhled bodu {proposal.title}'
         }
 
         return TemplateResponse(request, 'admin/markers/markerproposal/preview.html', context)
@@ -134,6 +135,7 @@ class MarkerProposalAdmin(MarkerAdmin):
                 'opts': MarkerProposal._meta,
                 'proposal': proposal,
                 'proposal_id': proposal.pk,
+                'title': f'Schválení bodu {proposal.title}'
             }
 
             return TemplateResponse(request, 'admin/markers/markerproposal/accept.html', context)
