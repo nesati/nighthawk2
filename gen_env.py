@@ -9,5 +9,5 @@ args = parser.parse_args()
 
 with open('.env', 'w') as file:
     file.write(f"DEBUG={args.debug}\n")
-    file.write(f"SECRET_KEY={get_random_secret_key()}")
+    file.write(f"SECRET_KEY={get_random_secret_key()}\n")
     file.write('ALLOWED_HOSTS=["localhost", "127.0.0.1", "za.gjk.cz"]')
