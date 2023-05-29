@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import distutils.util
+import json
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -34,7 +35,7 @@ DEBUG = bool(distutils.util.strtobool(os.environ['DEBUG']))
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ["localhost", "beta.za.gjk.cat", "za.gjk.cat"]
+ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOSTS'])
 
 
 # Application definition
