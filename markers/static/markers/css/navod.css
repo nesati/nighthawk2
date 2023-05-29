@@ -3,16 +3,6 @@ ol {
     text-align: left;
     padding: 0 40px;
 }
-
-code {
-    padding: 2px 5px;
-    border-radius: 0.1em;
-}
-
-header a {
-    text-decoration: none;
-}
-
 img {
     width: 100%;
     margin: 10px auto;
