@@ -10,9 +10,11 @@
     <link href="{% static 'markers/css/style.css' %}" rel="stylesheet">
 </head>
 <body style="padding-bottom: 24px">
+<main>
 <h2 id="title-of-comparison" style="font-size: 24px;"></h2>
 <div id="description"></div>
 <div id="compare"></div>
+</main>
 
 <script>
     const markerData = {{ proposal_json|safe }};
